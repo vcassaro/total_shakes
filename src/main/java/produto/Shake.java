@@ -2,11 +2,12 @@ package produto;
 
 import ingredientes.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Shake {
+public class Shake implements Serializable {
     private Base base;
     private Fruta fruta;
     private Topping topping;
@@ -26,7 +27,7 @@ public class Shake {
         this.fruta = fruta;
         this.topping = topping;
         this.tipoTamanho = tipoTamanho;
-        this.adicionais = adicionais.stream().sorted().collect(Collectors.toList());
+        this.adicionais = adicionais==null? new ArrayList<>(): adicionais.stream().sorted().collect(Collectors.toList());
     }
 
     public Base getBase() {

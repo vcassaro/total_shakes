@@ -1,6 +1,8 @@
 package pedido;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente implements Serializable {
     private int id;
@@ -18,7 +20,7 @@ public class Cliente implements Serializable {
         ObjectOutputStream oos = null;
 
         try{
-            fos = new FileOutputStream("Cliente-" + this.id + ".txt");
+            fos = new FileOutputStream("./Clientes/Cliente-" + this.id + ".txt");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(this);
         }catch(Exception e){
@@ -39,7 +41,7 @@ public class Cliente implements Serializable {
         ObjectInputStream ois = null;
 
         try{
-            fis = new FileInputStream("Cliente-" + id + ".txt");
+            fis = new FileInputStream("./Clientes/Cliente-" + id + ".txt");
             ois = new ObjectInputStream(fis);
 
             @SuppressWarnings("unchecked") Cliente cliente = (Cliente) ois.readObject();
@@ -48,6 +50,55 @@ public class Cliente implements Serializable {
         }catch(Exception e){
             System.out.println("Nao foi possivel desserializar");
             return null;
+        }finally{
+            if(ois != null){
+                try{
+                    ois.close();
+                }catch(IOException e){
+                    System.out.println("Nao foi possivel fechar o arquivo");
+                }
+            }
+        }
+    }
+
+    public static void serealizarNumeroClientes(int numeros){
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+
+        try{
+            fos = new FileOutputStream("./Clientes/NumeroClientes.txt");
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(numeros);
+        }catch(Exception e){
+            System.out.println("Nao foi possivel serializar");
+        }finally{
+            if(oos != null){
+                try{
+                    oos.close();
+                }catch(IOException e){
+                    System.out.println("Nao foi possivel fechar o arquivo");
+                }
+            }
+        }
+    }
+
+    public static int desserializarNumeroClientes(){
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+
+        try{
+            fis = new FileInputStream("./Clientes/NumeroClientes.txt");
+            ois = new ObjectInputStream(fis);
+
+            @SuppressWarnings("unchecked") int numero = (int) ois.readObject();
+
+            return numero;
+        }catch(FileNotFoundException e){
+            System.out.println("Ainda não há clientes registrados.");
+            return 0;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+            return 0;
         }finally{
             if(ois != null){
                 try{
@@ -77,6 +128,18 @@ public class Cliente implements Serializable {
         result = 31 * result + nome.hashCode();
         result = 31 * result + email.hashCode();
         return result;
+    }
+
+    public static List<Cliente> desserializarClientes(){
+        List<Cliente> clientes = new ArrayList<>();
+        for (int i = 1 ; i <= desserializarNumeroClientes(); i++){
+            clientes.add(desserializarCliente(i));
+        }
+        return clientes;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

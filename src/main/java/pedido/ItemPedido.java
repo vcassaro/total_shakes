@@ -2,7 +2,9 @@ package pedido;
 
 import produto.Shake;
 
-public class ItemPedido {
+import java.io.Serializable;
+
+public class ItemPedido implements Serializable {
     private Shake shake;
     private int quantidade;
 

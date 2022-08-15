@@ -2,9 +2,10 @@ package pedido;
 
 import ingredientes.Ingrediente;
 
+import java.io.*;
 import java.util.TreeMap;
 
-public class Cardapio {
+public class Cardapio implements Serializable {
     private TreeMap<Ingrediente,Double> precos;
 
     public Cardapio(){
@@ -36,6 +37,55 @@ public class Cardapio {
     public Double buscarPreco(Ingrediente ingrediente){
         verificarRegistroDeIngrediente(ingrediente);
         return precos.get(ingrediente);
+    }
+
+    public void serializarCardapio(){
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+
+        try{
+            fos = new FileOutputStream("Cardapio.txt");
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(this);
+        }catch(Exception e){
+            System.out.println("Nao foi possivel serializar");
+        }finally{
+            if(oos != null){
+                try{
+                    oos.close();
+                }catch(IOException e){
+                    System.out.println("Nao foi possivel fechar o arquivo");
+                }
+            }
+        }
+    }
+
+    public static Cardapio desserializarCardapio(){
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+
+        try{
+            fis = new FileInputStream("Cardapio.txt");
+            ois = new ObjectInputStream(fis);
+
+            @SuppressWarnings("unchecked") Cardapio cardapio = (Cardapio) ois.readObject();
+
+            return cardapio;
+        }catch(FileNotFoundException e){
+            System.out.println("Cardapio vazio, registre itens para que possam ser feito pedidos.");
+            return new Cardapio();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erro: "+e.getMessage());
+            return new Cardapio();
+        }finally{
+            if(ois != null){
+                try{
+                    ois.close();
+                }catch(IOException e){
+                    System.out.println("Nao foi possivel fechar o arquivo");
+                }
+            }
+        }
     }
 
     @Override
