@@ -22,19 +22,19 @@ public class Cardapio {
 
     public boolean atualizarIngrediente(Ingrediente ingrediente,Double preco){
         validarPrecoPositivo(preco);
-        if(!precos.containsKey(ingrediente)) throw new IllegalArgumentException("Ingrediente nao existe no cardapio.");
+        verificarRegistroDeIngrediente(ingrediente);
         if(precos.replace(ingrediente, preco)!=null) return true;
         else throw new RuntimeException("Erro ao atualizar ingrediente.");
     }
 
     public boolean removerIngrediente(Ingrediente ingrediente) {
-        if(!precos.containsKey(ingrediente)) throw new IllegalArgumentException("Ingrediente nao existe no cardapio.");
+        verificarRegistroDeIngrediente(ingrediente);
         if(precos.remove(ingrediente)!=null) return true;
         else throw new RuntimeException("Erro ao remover ingrediente.");
     }
 
     public Double buscarPreco(Ingrediente ingrediente){
-        if(!precos.containsKey(ingrediente)) throw new IllegalArgumentException("Ingrediente nao existe no cardapio.");
+        verificarRegistroDeIngrediente(ingrediente);
         return precos.get(ingrediente);
     }
 
@@ -45,5 +45,9 @@ public class Cardapio {
 
     public void validarPrecoPositivo(Double preco){
         if(preco<=0) throw new IllegalArgumentException("Preco invalido.");
+    }
+
+    public void verificarRegistroDeIngrediente(Ingrediente ingrediente){
+        if(!precos.containsKey(ingrediente)) throw new IllegalArgumentException("Ingrediente nao existe no cardapio.");
     }
 }

@@ -38,12 +38,7 @@ public class Pedido{
 //            itemPreco+=cardapio.getPrecos().get(item.getShake().getFruta());
 //            itemPreco+=cardapio.getPrecos().get(item.getShake().getTopping());
             for(Adicional adicional : item.getShake().getAdicionais()){
-                for(Map.Entry<Ingrediente, Double> entry : cardapio.getPrecos().entrySet()) {
-                    if(entry.getKey().obterTipo().toString().equals(adicional.obterTipo().toString())){
-                        itemPreco+=entry.getValue();
-                        break;
-                    }
-                }
+                itemPreco+=cardapio.buscarPreco(adicional);
             }
             itemPreco*=item.getQuantidade();
             total+=itemPreco;
