@@ -1,6 +1,10 @@
 package pedido;
 
+import ingredientes.Adicional;
+import ingredientes.Ingrediente;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Pedido{
 
@@ -27,23 +31,32 @@ public class Pedido{
     }
 
     public double calcularTotal(Cardapio cardapio){
-        double total= 0;
-        //TODO
-        return total;
+        return itens.stream().map(item -> {
+            double itemPreco = (cardapio.buscarPreco(item.getShake().getBase())*item.getShake().getTipoTamanho().getMultiplicador());
+//            itemPreco+=cardapio.getPrecos().get(item.getShake().getFruta());
+//            itemPreco+=cardapio.getPrecos().get(item.getShake().getTopping());
+            itemPreco+=item.getShake().getAdicionais().stream().map(cardapio::buscarPreco).reduce(0.0, Double::sum);
+
+            return itemPreco*item.getQuantidade();
+        }).reduce(0.0, Double::sum);
     }
 
     public void adicionarItemPedido(ItemPedido itemPedidoAdicionado){
-        //TODO
+        if (itens == null) throw new NullPointerException("Lista de itens é nula");
+        itens.stream().filter(item -> item.getShake().equals(itemPedidoAdicionado.getShake()))
+                .findFirst()
+                .ifPresentOrElse(
+                        item -> item.setQuantidade(item.getQuantidade()+itemPedidoAdicionado.getQuantidade()),
+                        () -> {itens.add(itemPedidoAdicionado);});
     }
 
     public boolean removeItemPedido(ItemPedido itemPedidoRemovido) {
-        //substitua o true por uma condição
-        if (true) {
-            //TODO
-        } else {
-            throw new IllegalArgumentException("Item nao existe no pedido.");
-        }
-        return false;
+        if (itens == null) throw new NullPointerException("Lista de itens é nula");
+        itens.stream().filter(item ->  item.getShake().toString().equals(itemPedidoRemovido.getShake().toString())).findFirst().ifPresentOrElse(item -> {
+            item.setQuantidade(item.getQuantidade()-1);
+            if(item.getQuantidade()==0) itens.remove(item);
+        }, () -> {throw new IllegalArgumentException("Item nao existe no pedido.");});
+        return true;
     }
 
     @Override
