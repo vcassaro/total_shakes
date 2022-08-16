@@ -12,7 +12,6 @@ public class Fruta  implements Adicional,Comparable<Ingrediente>{
      }
 
 
-     //É necessário consertar o compareTo, para imprimir na ordem correta.
      @Override
      public int compareTo(Ingrediente ingrediente) {
           return this.obterTipo().toString().compareTo(ingrediente.obterTipo().toString());

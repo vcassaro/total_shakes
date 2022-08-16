@@ -32,46 +32,32 @@ public class Pedido implements Serializable {
     }
 
     public double calcularTotal(Cardapio cardapio){
-        double total= 0;
-        for(ItemPedido item : itens){
-            double itemPreco = 0;
-            itemPreco+=(cardapio.buscarPreco(item.getShake().getBase())*item.getShake().getTipoTamanho().getMultiplicador());
+        return itens.stream().map(item -> {
+            double itemPreco = (cardapio.buscarPreco(item.getShake().getBase())*item.getShake().getTipoTamanho().getMultiplicador());
 //            itemPreco+=cardapio.getPrecos().get(item.getShake().getFruta());
 //            itemPreco+=cardapio.getPrecos().get(item.getShake().getTopping());
-            for(Adicional adicional : item.getShake().getAdicionais()){
-                itemPreco+=cardapio.buscarPreco(adicional);
-            }
-            itemPreco*=item.getQuantidade();
-            total+=itemPreco;
-        }
-        return total;
+            itemPreco+=item.getShake().getAdicionais().stream().map(cardapio::buscarPreco).reduce(0.0, Double::sum);
+
+             return itemPreco*item.getQuantidade();
+        }).reduce(0.0, Double::sum);
     }
 
     public void adicionarItemPedido(ItemPedido itemPedidoAdicionado){
-        boolean duplicated = false;
-        for(ItemPedido item :itens){
-            if(item.getShake().equals(itemPedidoAdicionado.getShake())){
-                item.setQuantidade(item.getQuantidade()+itemPedidoAdicionado.getQuantidade());
-                duplicated = true;
-            }
-        }
-        if(!duplicated) itens.add(itemPedidoAdicionado);
+        if (itens == null) throw new NullPointerException("Lista de itens é nula");
+        itens.stream().filter(item -> item.getShake().equals(itemPedidoAdicionado.getShake()))
+                .findFirst()
+                .ifPresentOrElse(
+                        item -> item.setQuantidade(item.getQuantidade()+itemPedidoAdicionado.getQuantidade()),
+                        () -> {itens.add(itemPedidoAdicionado);});
     }
 
     public boolean removeItemPedido(ItemPedido itemPedidoRemovido) {
-        if (itens.stream().anyMatch(item -> item.getShake().toString().equals(itemPedidoRemovido.getShake().toString()))) {//TODO: verify only equals
-            for(ItemPedido item : itens){
-                if(item.getShake().toString().equals(itemPedidoRemovido.getShake().toString())){
-                    if((item.getQuantidade()-1)==0){
-                        itens.remove(item);
-                    } else item.setQuantidade(item.getQuantidade()-1);
-                    break;
-                }
-            }
-            return true;
-        } else {
-            throw new IllegalArgumentException("Item nao existe no pedido.");
-        }
+        if (itens == null) throw new NullPointerException("Lista de itens é nula");
+        itens.stream().filter(item ->  item.getShake().toString().equals(itemPedidoRemovido.getShake().toString())).findFirst().ifPresentOrElse(item -> {
+            item.setQuantidade(item.getQuantidade()-1);
+            if(item.getQuantidade()==0) itens.remove(item);
+        }, () -> {throw new IllegalArgumentException("Item nao existe no pedido.");});
+        return true;
     }
 
     public void serializarPedido(){

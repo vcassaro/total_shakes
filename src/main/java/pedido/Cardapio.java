@@ -24,14 +24,14 @@ public class Cardapio implements Serializable {
     public boolean atualizarIngrediente(Ingrediente ingrediente,Double preco){
         validarPrecoPositivo(preco);
         verificarRegistroDeIngrediente(ingrediente);
-        if(precos.replace(ingrediente, preco)!=null) return true;
-        else throw new RuntimeException("Erro ao atualizar ingrediente.");
+        if(precos.replace(ingrediente, preco)==null) throw new RuntimeException("Erro ao atualizar ingrediente.");
+        return true;
     }
 
     public boolean removerIngrediente(Ingrediente ingrediente) {
         verificarRegistroDeIngrediente(ingrediente);
-        if(precos.remove(ingrediente)!=null) return true;
-        else throw new RuntimeException("Erro ao remover ingrediente.");
+        if(precos.remove(ingrediente)==null) throw new RuntimeException("Erro ao remover ingrediente.");
+        return true;
     }
 
     public Double buscarPreco(Ingrediente ingrediente){
