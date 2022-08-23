@@ -1,19 +1,22 @@
 # ToTal Shakes
 
 ```
+Desafios criados por:
+
 Arnald da Costa Queiroga @arnald
 André Luiz Vieira Mostaro @amostaro
 Elvis William De Oliveira Barbieri @ebarbieri
 Eric de Sousa Andrade @ericsousa
 Jezielle de Fátima Farias da Cunha @jezielle
 Rebeca Baptista Fonseca Viana @rebecav
-
-
-Foi solicitado que fosse criado um sistema para uma Loja de Shakes, e você como desenvolvedor 
-recebeu a tarefa de implementá-lo. E para isso você deve seguir as seguintes especificações.
 ```
 
-<h3>Dentro do package de Ingrediente temos a seguinte estrutura</h3> <code><b>OK<b></code>
+<h2>Proposta da semana 1:</h2>
+Foi solicitado que fosse criado um sistema para uma Loja de Shakes, e você como desenvolvedor 
+recebeu a tarefa de implementá-lo. E para isso você deve seguir as seguintes especificações.
+
+
+<h3>Dentro do package de Ingrediente temos a seguinte estrutura <code><b>OK<b></code></h3>
 <ul>
     <li><code>Interface</code> Ingrediente <code><b>OK<b></code></li>
     <ul>
@@ -115,7 +118,7 @@ recebeu a tarefa de implementá-lo. E para isso você deve seguir as seguintes e
     </ul>
 </ul>
 
-<h3>Dentro do package de Produto temos a seguinte estrutura</h3> <code><b>OK<b></code>
+<h3>Dentro do package de Produto temos a seguinte estrutura <code><b>OK<b></code></h3>
 <ul>
     <li><code>Enum</code> TipoTamanho <code><b>OK<b></code></li>
     <ul>
@@ -146,7 +149,7 @@ recebeu a tarefa de implementá-lo. E para isso você deve seguir as seguintes e
    </ul>
    </ul>
 
-<h3>Dentro do package de Pedido temos a seguinte estrutura</h3>
+<h3>Dentro do package de Pedido temos a seguinte estrutura <code><b>OK<b></code></h3>
 <ul>
     <li><code>Class</code> Cardapio <code><b>OK<b></code></li>
         <ul>
@@ -220,7 +223,7 @@ recebeu a tarefa de implementá-lo. E para isso você deve seguir as seguintes e
        </ul>
 </ul>
 
-<h3>Dentro do package de Demo temos a seguinte estrutura</h3>
+<h3>Dentro do package de Demo temos a seguinte estrutura <code><b>OK<b></code></h3>
 <ul>
     <li><code>Class</code> Program <code><b>OK<b></code></li>
     <ul>
@@ -241,18 +244,18 @@ recebeu a tarefa de implementá-lo. E para isso você deve seguir as seguintes e
 ::::: Criando um Shake Básico 1:1:1:1
 [Sorvete / Banana / Mel / [Aveia] / G / x1] - 1 - Pedro - pedro@email.com
 18.0
-::::: Adicionando um Shake igual no mesmo pedido
+::::: Adicionando um Shake igual no mesmo br.com.ToTalShakes.pedido
 [Sorvete / Banana / Mel / [Aveia] / G / x2] - 1 - Pedro - pedro@email.com
 36.0
-::::: Adicionando um Shake diferente no mesmo pedido
+::::: Adicionando um Shake diferente no mesmo br.com.ToTalShakes.pedido
 [Sorvete / Banana / Mel / [Aveia] / G / x2, Sorvete / Banana / Mel / [] / P / x1] - 1 - Pedro - pedro@email.com
 46.0
-::::: Removendo um itemPedido de um pedido
+::::: Removendo um itemPedido de um br.com.ToTalShakes.pedido
 [Sorvete / Banana / Mel / [Aveia] / G / x2, Sorvete / Banana / Mel / [] / P / x1] - 1 - Pedro - pedro@email.com
 [Sorvete / Banana / Mel / [Aveia] / G / x1, Sorvete / Banana / Mel / [] / P / x1] - 1 - Pedro - pedro@email.com
 [Sorvete / Banana / Mel / [] / P / x1] - 1 - Pedro - pedro@email.com
 [] - 1 - Pedro - pedro@email.com
-::::: Item pedido com dois adicionais
+::::: Item br.com.ToTalShakes.pedido com dois adicionais
 [Iorgute / Morango / Mel / [Banana, Morango] / P / x1] - 1 - Pedro - pedro@email.com
 20.5
 [Iorgute / Morango / Mel / [Banana, Morango] / P / x3] - 1 - Pedro - pedro@email.com
@@ -281,7 +284,7 @@ Process finished with exit code 0
             <li><code>G</code>: preco da <code>Base</code> acrescentado de 50%</li>         
         </ul>   
         <li>Regra 3: O custo de um <code>Pedido</code> é o somatório do custo de todos os <code>Shake</code> presentes nos <code>ItemPedido</code> desse <code>Pedido</code> (dica: <code>ItemPedido</code> possui um atributo <code>quantidade</code>)</li>
-        <li>Regra 4: A função <code>boolean removeItemPedido(ItemPedido itemPedidoRemovido)</code> deve lançar uma exceção do tipo <code>IllegalArgumentException</code> com a mensagem <code>Item nao existe no pedido.</code> caso o <code>ItemPedido</code> a ser removido não exista no <code>Pedido</code></li>
+        <li>Regra 4: A função <code>boolean removeItemPedido(ItemPedido itemPedidoRemovido)</code> deve lançar uma exceção do tipo <code>IllegalArgumentException</code> com a mensagem <code>Item nao existe no br.com.ToTalShakes.pedido.</code> caso o <code>ItemPedido</code> a ser removido não exista no <code>Pedido</code></li>
         <li>Regra 5: A função <code>boolean removeItemPedido(ItemPedido itemPedidoRemovido)</code> irá sempre reduzir apenas UMA unidade do <code>ItemPedido</code>, independente da <code>quantidade</code> que foi informada no parâmetro da função.</li>
     </ul>
     <li><code>Cardapio <code><b>OK<b></code></code>:</li>
@@ -307,8 +310,80 @@ a saída do Program esperada.
 ```
 O seu objetivo agora é fazer uma Interface
 Utilizando uma classe chamada Main
-Você deve criar uma interface onde o usuario irá fazer o pedido
-Armazenando em variaveis todos os dados do pedido 
+Você deve criar uma interface onde o usuario irá fazer o br.com.ToTalShakes.pedido
+Armazenando em variaveis todos os dados do br.com.ToTalShakes.pedido 
 Você ira salvar esses pedidos em um arquivo
 Lembrando algumas classes irão precisar Implementar o Serializable
 ```
+
+<h2>Proposta da semana 2:</h2>
+Após cumprir o desafio do sistema para uma Loja de Shakes, foi solicidado 
+a criação de um armazem, para um maior controle dos br.com.ToTalShakes.ingredientes.
+Para isso, você como desenvolvedor precisará desenvolver uma classe Armazem 
+usando o TDD (Test-driven development) seguindo as seguintes especificações.
+
+<h3>Primeiro passo para a continuação do desafio</h3>
+No mesmo projeto que foi desenvolvido na semana 1, você irá criar uma nova branch (<code>git checkout -b “feature/week-2”</code>) e desenvolver a solução nela. Após finalizar o desafio, abrir um Pull Request no GitHub (para a main do seu projeto) para que então o grupo possa fazer o Code Review.
+<br>
+
+<h3>Criar uma classe Armazém que irá armazenar os Ingredientes e a quantidade de Ingrediente</h3>
+<ul>
+    <li>A classe deve ter um atributo private TreeMap&lt;Ingrediente, Integer&gt; chamado estoque.</li>
+    <li>Criar um package chamado armazem e criar a classe Armazem dentro deste package.</li>
+</ul>
+
+<h3>Criar um TDD para os seguintes métodos dessa classe:</h3>
+<ul>
+    <li>Método(s):</li>
+    <br>
+    <ul>
+        <li><code>public void cadastrarIngredienteEmEstoque(Ingrediente ingrediente)</code></li>
+        <ul>
+            <li>Reponsabilidade: Cadastrar no estoque um novo ingrediente. </li>
+<li> Regra: A quantidade deve ser setada como zero sempre que for cadastrar um novo ingrediente. </li>
+<li> Exception: Caso o ingrediente já esteja cadastrado deve retornar IllegalArgumentException com a seguinte mensagem de erro: “Ingrediente já cadastrado”.</li>
+        </ul>
+    </ul>
+    <ul><br>
+        <li><code>public void descadastrarIngredienteEmEstoque(Ingrediente ingrediente)</code></li>
+        <ul>
+            <li>Responsabilidade: Descadastra o ingrediente do estoque.</li>
+<li> Regra: O ingrediente deve ser excluido do estoque. </li>
+<li> Exception: Caso o ingrediente não exista no estoque deve retornar IllegalArgumentException com a seguinte mensagem de erro: “Ingrediente não encontrado”.</li>
+        </ul>
+    </ul>
+    <ul><br>
+        <li><code>public void adicionarQuantidadeDoIngredienteEmEstoque(Ingrediente ingrediente, Integer quantidade) </code></li>
+        <ul>
+            <li>Reponsabilidade: Adicionar uma determinada quantidade de um ingrediente específico no estoque.</li>
+<li> Regra: Deve ser somado a quantidade solicitada do ingrediente a quantidade que estava no estoque; a quantidade tem que ser maior que zero e o ingrediente que vai receber a quantidade deve existir no estoque.</li>
+<li> Exception: Caso o ingrediente não exista no estoque deve retornar IllegalArgumentException com a seguinte mensagem de erro: “Ingrediente não encontrado” e caso a quantidade que foi passada para ser somada for menor ou igual a zero deve retornar IllegalArgumentException com a seguinte mensagem de erro: “Quantidade invalida” </li>
+        </ul>
+    </ul>
+    <ul><br>
+        <li><code>public void reduzirQuantidadeDoIngredienteEmEstoque(Ingrediente ingrediente, Integer quantidade)</code></li>
+        <ul>
+            <li>Reponsabilidade:Reduzir a quantidade de um determinado ingrediente no estoque. </li>
+            <li> Regra: Deve ser subtraído a quantidade solicitada do ingrediente a quantidade que estava no estoque. Caso a quantidade a ser removida seja a mesma da quantidade em estoque, o ingrediente deve ser excluído do estoque.</li>
+            <li> Exception: Caso o ingrediente não exista no estoque deve retornar IllegalArgumentException com a seguinte mensagem de erro: “Ingrediente não encontrado” e caso a quantidade que foi passada para ser excluida for menor ou igual a zero e a quantidade em estoque seja insuficiente para ser removida retornar um IllegalArgumentException com a seguinte mensagem de erro: “Quantidade invalida”.</li>
+         </ul>
+	</ul>
+    <ul><br>
+        <li><code>public Integer consultarQuantidadeDoIngredienteEmEstoque(Ingrediente ingrediente)</code></li>
+        <ul>
+            <li>Reponsabilidade: Busca a quantidade de um determinado ingrediente no estoque. </li>
+<li> Exception: Caso o ingrediente não exista no estoque deve retornar IllegalArgumentException com a seguinte mensagem de erro: “Ingrediente não encontrado”. </li>
+        </ul>
+    </ul>
+</ul>
+
+<h3>Atenção</h3>
+O objetivo deste desafio é que você escreva primeiro os testes e depois desenvolva a classe (caso tiver dificuldade, escrever os cenários de testes pode ajudar no desenvolvimento).
+
+<h3>Desafio Extra</h3>
+Refatoração dos testes e do projeto. Tem alguns fatores que podem ser melhorados nos testes e no projeto. Desta forma, você como desenvolvedor deve ter um olhar crítico e levar em consideração as boas práticas de Clean Code e refatorar o projeto. Segue alguns exemplos a serem refatorados: 
+<ul>
+	<li>Classes de teste: Nomenclatura dos testes, utilização da anotação <code>@DisplayName</code>, substituição dos try/catch por <code>assertThrows</code> e entre outros. </li>
+<li>Classe main: Nome do enum em maiúsculo, criação de Exceções específicas (IngredienteNotFoundException, por exemplo), utilização do modificador <code>final</code> e entre outros. </li>
+</ul>
+Além disso, implementar testes parametrizados nas classes de teste.
