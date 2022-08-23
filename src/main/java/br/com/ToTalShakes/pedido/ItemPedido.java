@@ -1,6 +1,6 @@
-package pedido;
+package br.com.ToTalShakes.pedido;
 
-import produto.Shake;
+import br.com.ToTalShakes.produto.Shake;
 
 public class ItemPedido {
     private Shake shake;

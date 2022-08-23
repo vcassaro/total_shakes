@@ -1,4 +1,4 @@
-package pedido;
+package br.com.ToTalShakes.pedido;
 
 import java.io.*;
 

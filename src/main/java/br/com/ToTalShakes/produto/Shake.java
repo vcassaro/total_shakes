@@ -1,6 +1,6 @@
-package produto;
+package br.com.ToTalShakes.produto;
 
-import ingredientes.*;
+import br.com.ToTalShakes.ingredientes.*;
 
 import java.util.ArrayList;
 import java.util.List;

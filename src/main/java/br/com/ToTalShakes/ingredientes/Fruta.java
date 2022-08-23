@@ -1,4 +1,4 @@
-package ingredientes;
+package br.com.ToTalShakes.ingredientes;
 
 public class Fruta  implements Adicional,Comparable<Ingrediente>{
      private TipoFruta tipoFruta;

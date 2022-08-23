@@ -1,12 +1,12 @@
-package pedido;
+package br.com.ToTalShakes.pedido;
 
-import ingredientes.*;
+import br.com.ToTalShakes.ingredientes.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import produto.Shake;
-import produto.TipoTamanho;
+import br.com.ToTalShakes.produto.Shake;
+import br.com.ToTalShakes.produto.TipoTamanho;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class PedidoTest{
     @BeforeAll
     void setup(){
         cardapio = new Cardapio();
-        cardapio.adicionarIngrediente(new Base(TipoBase.Iorgute), 10.0);
+        cardapio.adicionarIngrediente(new Base(TipoBase.Iogurte), 10.0);
         cardapio.adicionarIngrediente(new Base(TipoBase.Sorvete), 5.0);
         cardapio.adicionarIngrediente(new Fruta(TipoFruta.Banana), 1.0);
         cardapio.adicionarIngrediente(new Fruta(TipoFruta.Morango), 10.0);
@@ -212,14 +212,14 @@ public class PedidoTest{
             pedido.removeItemPedido(itemPedidoRemovido);
             fail("Excecao nao encontrada.");
         }catch(Throwable e){
-            assertEquals("Item nao existe no pedido.", e.getMessage());
+            assertEquals("Item nao existe no br.com.ToTalShakes.pedido.", e.getMessage());
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
 
     @Test
     void test_calcularPedido_comAdicional_properly(){
-        Shake shake1 = new Shake(new Base(TipoBase.Iorgute),
+        Shake shake1 = new Shake(new Base(TipoBase.Iogurte),
                 new Fruta(TipoFruta.Banana),
                 new Topping(TipoTopping.Aveia),
                 TipoTamanho.G,
@@ -242,7 +242,7 @@ public class PedidoTest{
 
     @Test
     void test_calcularPedido_semAdicional_properly(){
-        Shake shake1 = new Shake(new Base(TipoBase.Iorgute),
+        Shake shake1 = new Shake(new Base(TipoBase.Iogurte),
                 new Fruta(TipoFruta.Banana),
                 new Topping(TipoTopping.Aveia),
                 TipoTamanho.G,

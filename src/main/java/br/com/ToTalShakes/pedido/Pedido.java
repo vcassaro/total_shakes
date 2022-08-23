@@ -1,10 +1,6 @@
-package pedido;
-
-import ingredientes.Adicional;
-import ingredientes.Ingrediente;
+package br.com.ToTalShakes.pedido;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Pedido{
 
@@ -36,7 +32,6 @@ public class Pedido{
 //            itemPreco+=cardapio.getPrecos().get(item.getShake().getFruta());
 //            itemPreco+=cardapio.getPrecos().get(item.getShake().getTopping());
             itemPreco+=item.getShake().getAdicionais().stream().map(cardapio::buscarPreco).reduce(0.0, Double::sum);
-
             return itemPreco*item.getQuantidade();
         }).reduce(0.0, Double::sum);
     }
@@ -47,7 +42,8 @@ public class Pedido{
                 .findFirst()
                 .ifPresentOrElse(
                         item -> item.setQuantidade(item.getQuantidade()+itemPedidoAdicionado.getQuantidade()),
-                        () -> {itens.add(itemPedidoAdicionado);});
+                        () -> {itens.add(itemPedidoAdicionado);}
+                );
     }
 
     public boolean removeItemPedido(ItemPedido itemPedidoRemovido) {
@@ -55,7 +51,7 @@ public class Pedido{
         itens.stream().filter(item ->  item.getShake().toString().equals(itemPedidoRemovido.getShake().toString())).findFirst().ifPresentOrElse(item -> {
             item.setQuantidade(item.getQuantidade()-1);
             if(item.getQuantidade()==0) itens.remove(item);
-        }, () -> {throw new IllegalArgumentException("Item nao existe no pedido.");});
+        }, () -> {throw new IllegalArgumentException("Item nao existe no br.com.ToTalShakes.pedido.");});
         return true;
     }
 

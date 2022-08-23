@@ -1,12 +1,12 @@
-package demo;
+package br.com.ToTalShakes.demo;
 
-import ingredientes.*;
-import pedido.Cardapio;
-import pedido.Cliente;
-import pedido.ItemPedido;
-import pedido.Pedido;
-import produto.Shake;
-import produto.TipoTamanho;
+import br.com.ToTalShakes.ingredientes.*;
+import br.com.ToTalShakes.pedido.Cardapio;
+import br.com.ToTalShakes.pedido.Cliente;
+import br.com.ToTalShakes.pedido.ItemPedido;
+import br.com.ToTalShakes.pedido.Pedido;
+import br.com.ToTalShakes.produto.Shake;
+import br.com.ToTalShakes.produto.TipoTamanho;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Program {
         Cardapio cardapio = new Cardapio();
 
         Base sorvete = new Base(TipoBase.Sorvete);
-        Base iogurte = new Base(TipoBase.Iorgute);
+        Base iogurte = new Base(TipoBase.Iogurte);
         Fruta banana = new Fruta(TipoFruta.Banana);
         Fruta morango = new Fruta(TipoFruta.Morango);
         Topping mel = new Topping(TipoTopping.Mel);
@@ -50,17 +50,17 @@ public class Program {
         System.out.println(pedido2);
         System.out.println(pedido2.calcularTotal(cardapio));
 
-        System.out.println("::::: Adicionando um Shake igual no mesmo pedido");
+        System.out.println("::::: Adicionando um Shake igual no mesmo br.com.ToTalShakes.pedido");
         pedido2.adicionarItemPedido(itemPedido2);
         System.out.println(pedido2);
         System.out.println(pedido2.calcularTotal(cardapio));
 
-        System.out.println("::::: Adicionando um Shake diferente no mesmo pedido");
+        System.out.println("::::: Adicionando um Shake diferente no mesmo br.com.ToTalShakes.pedido");
         pedido2.adicionarItemPedido(itemPedido1);
         System.out.println(pedido2);
         System.out.println(pedido2.calcularTotal(cardapio));
 
-        System.out.println("::::: Removendo um itemPedido de um pedido");
+        System.out.println("::::: Removendo um itemPedido de um br.com.ToTalShakes.pedido");
         System.out.println(pedido2);
         pedido2.removeItemPedido(itemPedido2);
         System.out.println(pedido2);
@@ -69,7 +69,7 @@ public class Program {
         pedido2.removeItemPedido(itemPedido1);
         System.out.println(pedido2);
 
-        System.out.println("::::: Item pedido com dois adicionais");
+        System.out.println("::::: Item br.com.ToTalShakes.pedido com dois adicionais");
         Shake shake3 = new Shake(iogurte, morango, mel, TipoTamanho.P, new ArrayList<>(List.of(morango, banana)));
         ItemPedido itemPedido3 = new ItemPedido(shake3, 1);
         Pedido pedido3 = new Pedido(3, new ArrayList<>(List.of(itemPedido3)), cliente);

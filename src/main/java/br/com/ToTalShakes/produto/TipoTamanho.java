@@ -1,4 +1,4 @@
-package produto;
+package br.com.ToTalShakes.produto;
 
 public enum TipoTamanho {
 

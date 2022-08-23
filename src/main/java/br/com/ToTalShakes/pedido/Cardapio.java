@@ -1,6 +1,6 @@
-package pedido;
+package br.com.ToTalShakes.pedido;
 
-import ingredientes.Ingrediente;
+import br.com.ToTalShakes.ingredientes.Ingrediente;
 
 import java.util.TreeMap;
 
